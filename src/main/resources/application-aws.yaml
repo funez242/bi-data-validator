@@ -1,0 +1,17 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${RESOURCE_SERVER_URL}
+
+logging:
+  level:
+    root: ${LEVEL_LOG}
+    org.springframework.*: ${LEVEL_LOG}
+    org.neo4j.*: ${LEVEL_LOG}
+    org:
+      hibernate:
+        SQL: ${LEVEL_LOG}
