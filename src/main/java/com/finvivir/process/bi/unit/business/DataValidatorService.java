@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * The class PersonService.
@@ -67,11 +69,15 @@ public class DataValidatorService {
 
         log.info("businessIds: {}",businessIds);
 
-        Set<Integer> scoreIds =
-                groupIds.stream().parallel().flatMap(groupId ->
-                    toolfiappBackendConsumer.getPersonsScoreByGroup(countryCode,groupId,2).getResults()
-                            .stream().map(ClientScoreDto::getClientId))
-                        .collect(Collectors.toSet());
+        Stream<Integer> scoreIdsStream = groupIds.stream().flatMap(groupId -> {
+             log.info("groupID: {}",groupId);
+             ResultListDto<ClientScoreDto> scoreResponse = toolfiappBackendConsumer.getPersonsScoreByGroup(countryCode,groupId,2);
+             log.info("ScoreResponse: {}",scoreResponse.getResults().toString());
+             return scoreResponse.getResults()
+                  .stream().map(ClientScoreDto::getClientId);
+        });
+
+        Set<Integer> scoreIds = scoreIdsStream.collect(Collectors.toSet());
 
         log.info("scoreIds: {}",scoreIds);
         List<Integer> idsEnLos3Lados = groupPersonIds.stream().filter(groupID ->
