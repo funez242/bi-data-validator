@@ -39,7 +39,7 @@ public class DataValidatorService {
      * @return ValidateData
      */
     public ValidatedData getValidatedBusinessData(String countryCode, LocalDate operationDate) {
-        log.info(String.format("countryCode: %s, pageNumber: %s",countryCode,operationDate));
+        log.info(String.format("countryCode: %s, operationDate: %s",countryCode,operationDate));
 
         RouteToOperateDto getGroupResponse =
                 toolfiappBackendConsumer.getGroupsofRoute(countryCode,operationDate.toString());
