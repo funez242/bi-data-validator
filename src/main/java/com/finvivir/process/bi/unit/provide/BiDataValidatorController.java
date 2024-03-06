@@ -29,11 +29,11 @@ import java.time.LocalDate;
 public interface BiDataValidatorController {
 
 
-    @Operation(summary = "Get pages with business person data", description = "Get pages with persons, to get all groups in the system you must go through all the pages of the result", security = {
-        @SecurityRequirement(name = "bearerAuth")    }, tags={ "PersonBusinessData"
+    @Operation(summary = "Get business validated data", description = "Get lists with validated data, to get data validation result", security = {
+        @SecurityRequirement(name = "bearerAuth")    }, tags={ "BiDataValidation"
     })
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Persons page retrieved correctly", content = @Content(mediaType = "application/json", schema = @Schema(implementation = PagePersonsResult.class))),
+        @ApiResponse(responseCode = "200", description = "Validated data retrieved correctly", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ValidatedData.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized"),
         @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseStatusError.class))),
         @ApiResponse(responseCode = "500", description = "Internal error while retrieving persons", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseStatusError.class)))

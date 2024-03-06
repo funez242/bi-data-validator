@@ -32,8 +32,8 @@ public class SwaggerConfig {
 	    	.components(new Components().addSecuritySchemes(securitySchemeName,
                     new SecurityScheme().type(SecurityScheme.Type.HTTP)
                     .scheme("bearer").name(securitySchemeName)))
-	    	.info(new Info().title("process-bi-unit-API")
-	        .description("Process API to support the business process related with routes operation.")
+	    	.info(new Info().title("bi-data-validator-API")
+	        .description("API to support the business validation data.")
 	        .version(CURRENT_VERSION))
 	        .externalDocs(new ExternalDocumentation()
 	        .description("springdoc-openapi")
